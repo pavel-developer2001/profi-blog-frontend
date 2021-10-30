@@ -1,0 +1,45 @@
+.main {
+  margin: 10px 0px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  .headLeft {
+    margin-right: 25px;
+  }
+  .headRigth {
+    .top {
+      strong {
+        font-size: 32px;
+        line-height: 36px;
+      }
+    }
+    .bottom {
+      margin-top: 15px;
+      display: flex;
+      .countBlock {
+        display: grid;
+        strong {
+          font-size: 18px;
+          line-height: 22px;
+          height: 22px;
+          font-weight: 700;
+        }
+        span {
+          font-size: 14px;
+          line-height: 1.15;
+          color: gray;
+        }
+        &:last-child {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+.subscribeBlock {
+  margin-top: 20px;
+}
+.body {
+  margin-top: 20px;
+}

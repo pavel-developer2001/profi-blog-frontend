@@ -1,0 +1,42 @@
+.main {
+  margin: 10px 0px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .headLeft {
+    display: flex;
+    min-width: 400px;
+
+    .dataUser {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      strong {
+        margin-left: 5px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.body {
+  .bodyTitle {
+    margin-top: 25px;
+  }
+  .bodyText {
+    margin: 10px 0;
+  }
+  .bodyImg {
+    margin: 15px 0;
+    img {
+      width: 350px;
+      height: 200px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+}

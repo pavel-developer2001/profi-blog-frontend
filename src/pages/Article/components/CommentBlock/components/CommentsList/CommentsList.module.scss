@@ -1,0 +1,41 @@
+.mainList {
+  margin-top: 20px;
+}
+.main {
+  margin-bottom: 10px;
+  .header {
+    display: flex;
+    align-items: center;
+    strong {
+      margin: 0 5px;
+      font-size: 18px;
+    }
+    span {
+      color: rgba(158, 103, 103, 0.4);
+      font-weight: 500;
+      margin-left: 10px;
+    }
+  }
+  .body {
+    p {
+      margin: 5px 0;
+      line-height: 22px;
+      font-size: 16px;
+      max-width: 600px;
+    }
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+
+    .footerRigth {
+      display: flex;
+      align-items: center;
+      .countLikes {
+        font-size: 14px;
+        color: #00c000;
+        font-weight: 500;
+      }
+    }
+  }
+}

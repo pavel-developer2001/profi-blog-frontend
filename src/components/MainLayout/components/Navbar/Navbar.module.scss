@@ -1,0 +1,14 @@
+.header {
+  color: black !important;
+  background-color: cyan !important;
+  margin-bottom: 20px;
+}
+.menuItem {
+  a {
+    display: flex;
+    align-items: center;
+    p {
+      margin-left: 5px;
+    }
+  }
+}
