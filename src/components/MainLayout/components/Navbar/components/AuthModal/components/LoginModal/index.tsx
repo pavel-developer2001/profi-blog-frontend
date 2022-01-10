@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { login } from "../../../../../../../../store/modules/user/user.slice";
 
 interface LoginModalProps {
   setRegister: (arg: boolean) => void;
@@ -21,12 +23,14 @@ const LoginModal = ({ setRegister }: LoginModalProps) => {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(LoginFormSchema),
   });
+  const dispatch = useDispatch();
   const onSubmit = async (data: any) => {
-    console.log("DATA", data);
-    // dispatch(fetchSignIn(data));
+    dispatch(login(data));
+    reset();
   };
 
   return (

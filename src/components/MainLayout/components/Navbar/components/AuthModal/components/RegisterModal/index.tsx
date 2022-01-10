@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { register } from "../../../../../../../../store/modules/user/user.slice";
 
 const RegisterFormSchema = yup.object().shape({
   name: yup.string().min(4, "Минимальная длина имени 4 символа").required(),
@@ -18,10 +20,12 @@ const RegisterFormSchema = yup.object().shape({
     .required(),
 });
 const RegisterModal = () => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(RegisterFormSchema),
   });
@@ -32,8 +36,8 @@ const RegisterModal = () => {
         email: data.email,
         password: data.password,
       };
-      console.log("payload", payload);
-      // dispatch(fetchSignIn(data));
+      dispatch(register(payload));
+      reset();
     }
   };
   return (
@@ -99,17 +103,6 @@ const RegisterModal = () => {
           </Button>
         </div>
       </form>
-      {/* <TextField id='outlined-basic' label='Email' variant='outlined' />
-      <TextField id='outlined-basic' label='UserName' variant='outlined' />
-      <TextField id='outlined-basic' label='Пароль' variant='outlined' />
-      <TextField
-        id='outlined-basic'
-        label='Повторить пароль'
-        variant='outlined'
-      />
-      <div>
-        <Button variant='contained'>Зарегистрироваться</Button>
-      </div> */}
     </>
   );
 };

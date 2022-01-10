@@ -1,9 +1,11 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { privateRoutes, publicRoutes, RouteNames } from "../../router";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "../../store/modules/user/user.selector";
 
 const AppRouter = () => {
-  const isAuth = true;
+  const isAuth = useSelector(selectUserToken);
   return (
     <div>
       {isAuth ? (

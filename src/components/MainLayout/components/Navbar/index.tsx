@@ -13,7 +13,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import styles from "./Navbar.module.scss";
 import AddIcon from "@mui/icons-material/Add";
 import AuthModal from "./components/AuthModal";
@@ -22,6 +21,9 @@ import { Button } from "@mui/material";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserToken } from "../../../../store/modules/user/user.selector";
+import { setToken } from "../../../../store/modules/user/user.slice";
 
 const Search = styled("div")(({ theme }: any) => ({
   position: "relative",
@@ -88,6 +90,13 @@ const Navbar = () => {
   };
 
   const menuId = "primary-search-account-menu";
+
+  const handleExitUser = () => {
+    window.localStorage.removeItem("blog-token");
+    dispatch(setToken(""));
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -120,7 +129,7 @@ const Navbar = () => {
           </Link>
         </div>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={handleExitUser}>
         <div className={styles.menuItem}>
           <Link to='/book-marks'>
             <LogoutIcon />
@@ -182,7 +191,8 @@ const Navbar = () => {
       </MenuItem>
     </Menu>
   );
-  const isAuth = true;
+  const isAuth = useSelector(selectUserToken);
+  const dispatch = useDispatch();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' className={styles.header}>
