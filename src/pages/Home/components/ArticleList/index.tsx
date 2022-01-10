@@ -1,12 +1,30 @@
 import { Avatar, AvatarGroup, IconButton, Paper } from "@mui/material";
-import React from "react";
+import React, { FC } from "react";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import styles from "./ArticleList.module.scss";
 import { Link } from "react-router-dom";
+import { IArticle } from "../../../../store/modules/article/types/IArticle";
 
-const ArticleListItem = () => {
+interface ArticleListItemProps {
+  id: number;
+  title: string;
+  text: string;
+  img: null | string;
+  date: string;
+  userName: string;
+  userId: number;
+}
+const ArticleListItem: FC<ArticleListItemProps> = ({
+  id,
+  title,
+  text,
+  img,
+  date,
+  userName,
+  userId,
+}) => {
   return (
     <Paper className={styles.main} elevation={3}>
       <div className={styles.header}>
@@ -16,7 +34,7 @@ const ArticleListItem = () => {
             src='/static/images/avatar/1.jpg'
             sx={{ width: 24, height: 24 }}
           />{" "}
-          <strong className={styles.name}>Name</strong>
+          <strong className={styles.name}>{userName}</strong>
         </div>
         <div className={styles.headRigth}>
           {" "}
@@ -32,22 +50,20 @@ const ArticleListItem = () => {
       <div className={styles.body}>
         <div className={styles.bodyLeft}>
           <img
-            src='https://avatars.mds.yandex.net/get-zen_doc/1880939/pub_5ec274cca23e1560113f276c_5ec276498600f212158d47a6/scale_1200'
+            src={
+              img
+                ? img
+                : "https://avatars.mds.yandex.net/get-zen_doc/1880939/pub_5ec274cca23e1560113f276c_5ec276498600f212158d47a6/scale_1200"
+            }
             alt='cover article'
             className={styles.cover}
           />
         </div>
         <div className={styles.bodyRigth}>
-          <Link to='/articles/1'>
-            <strong className={styles.title}>
-              Китай «ломает хребет» IT-гигантам — как это отразится на России?
-            </strong>
-            <p className={styles.text}>
-              Почему власти Китая душат TikTok и удаляют популярный
-              такси-агрегатор DiDi из всех цифровых магазинов страны? За что
-              IT-гигантов штрафуют на миллиарды долларов?
-            </p>
-            <span className={styles.date}>2 дня назад</span>
+          <Link to={`/articles/` + id}>
+            <strong className={styles.title}>{title}</strong>
+            <p className={styles.text}>{text}</p>
+            <span className={styles.date}>{date} дня назад</span>
           </Link>
         </div>
       </div>
@@ -96,12 +112,24 @@ const ArticleListItem = () => {
     </Paper>
   );
 };
-const ArticleList = () => {
+
+interface ArticleListProps {
+  articles: IArticle[];
+}
+const ArticleList: FC<ArticleListProps> = ({ articles }) => {
   return (
     <div className={styles.mainList}>
-      <ArticleListItem />
-      <ArticleListItem />
-      <ArticleListItem />
+      {articles?.map((article: any) => (
+        <ArticleListItem
+          id={article.id}
+          title={article.title}
+          text={article.text}
+          img={article.img}
+          date={article.createdAt}
+          userName={article.user.name}
+          userId={article.user.id}
+        />
+      ))}
     </div>
   );
 };

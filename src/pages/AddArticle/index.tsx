@@ -12,6 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import { useDispatch } from "react-redux";
+import { createArticle } from "../../store/modules/article/article.slice";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -49,7 +51,7 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 const AddArticle = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  console.log("TEXT", text);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
   console.log("categories", personName);
@@ -73,10 +75,15 @@ const AddArticle = () => {
       const payload = {
         title,
         text,
-        cover: imgArticle,
-        categories: personName,
+        // cover: imgArticle,
+        // categories: personName,
       };
       console.log("Payload", payload);
+      dispatch(createArticle(payload));
+      setText("");
+      setTitle("");
+      setPersonName([]);
+      setImgArticle(null);
     } catch (error) {}
   };
   return (
