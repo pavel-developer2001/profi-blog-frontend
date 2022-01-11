@@ -73,14 +73,18 @@ const AddArticle = () => {
   const handleAddArticle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const payload = {
-        title,
-        text,
-        // cover: imgArticle,
-        // categories: personName,
-      };
-      console.log("Payload", payload);
-      dispatch(createArticle(payload));
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("text", text);
+      formData.append("img", imgArticle);
+      // const payload = {
+      //   title,
+      //   text,
+      //   img: imgArticle,
+      //   // categories: personName,
+      // };
+      // console.log("Payload", payload);
+      dispatch(createArticle(formData));
       setText("");
       setTitle("");
       setPersonName([]);
@@ -96,7 +100,7 @@ const AddArticle = () => {
             aria-label='upload picture'
             component='span'
           >
-            <Link to={'/users/' + dataUser}>
+            <Link to={"/users/" + dataUser}>
               <ArrowBackIcon />
             </Link>
           </IconButton>
