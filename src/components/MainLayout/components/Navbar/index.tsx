@@ -24,6 +24,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserToken } from "../../../../store/modules/user/user.selector";
 import { setToken } from "../../../../store/modules/user/user.slice";
+import { dataUser } from "../../../../utils/getDataUserFromToken";
 
 const Search = styled("div")(({ theme }: any) => ({
   position: "relative",
@@ -97,6 +98,7 @@ const Navbar = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -115,7 +117,7 @@ const Navbar = () => {
     >
       <MenuItem onClick={handleMenuClose}>
         <div className={styles.menuItem}>
-          <Link to='/users/1'>
+          <Link to={"/users/" + dataUser}>
             <PersonIcon />
             <p>Мой профиль</p>
           </Link>

@@ -1,10 +1,30 @@
 import { Avatar, Button, IconButton } from "@mui/material";
-import React from "react";
+import React, { FC, useEffect } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import styles from "./CommentsList.module.scss";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findAllCommentsByArticle } from "../../../../../../store/modules/comment/comment.slice";
+import {
+  selectAllCommentByArticle,
+  selectCommentLoading,
+} from "../../../../../../store/modules/comment/comment.selector";
 
-const CommentsListItem = () => {
+interface CommentsListItemProps {
+  commentId: number;
+  text: string;
+  date: string;
+  userName: string;
+  userId: number;
+}
+const CommentsListItem: FC<CommentsListItemProps> = ({
+  commentId,
+  text,
+  date,
+  userName,
+  userId,
+}) => {
   return (
     <div className={styles.main}>
       <div className={styles.header}>
@@ -13,14 +33,11 @@ const CommentsListItem = () => {
           alt='Remy Sharp'
           src='/static/images/avatar/1.jpg'
         />
-        <strong>Елена</strong>
-        <span>больше 1 года</span>
+        <strong>{userName}</strong>
+        <span>{date}</span>
       </div>
       <div className={styles.body}>
-        <p>
-          Плохо работает, постоянно выскакивают некие губасто-силиконовые
-          чучела. Одни и те же. Как сорняк-не извести.
-        </p>
+        <p>{text}</p>
       </div>
       <div className={styles.footer}>
         <div className={styles.footerLeft}>
@@ -54,12 +71,32 @@ const CommentsListItem = () => {
   );
 };
 const CommentsList = () => {
+  const params: any = useParams();
+  const dispatch = useDispatch();
+  const comments = useSelector(selectAllCommentByArticle);
+  const loading = useSelector(selectCommentLoading);
+  console.log("comments", comments, loading);
+  useEffect(() => {
+    dispatch(findAllCommentsByArticle(params.id));
+  }, [params.id]);
   return (
     <div className={styles.mainList}>
-      <CommentsListItem />
-      <CommentsListItem />
-      <CommentsListItem />
-      <CommentsListItem />
+      {loading ? (
+        <p>loading</p>
+      ) : comments.length > 0 ? (
+        comments.map((item) => (
+          <CommentsListItem
+            key={item.id}
+            commentId={item.id}
+            date={item.createdAt}
+            text={item.text}
+            userId={item.user.id}
+            userName={item.user.name}
+          />
+        ))
+      ) : (
+        <p>Нет комментариев</p>
+      )}
     </div>
   );
 };

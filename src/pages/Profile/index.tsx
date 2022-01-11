@@ -1,11 +1,19 @@
 import { Avatar, Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Profile.module.scss";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import SubscribesList from "./components/SubscribesList";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findById } from "../../store/modules/user/user.slice";
+import {
+  selectUserData,
+  selectUserLoading,
+} from "../../store/modules/user/user.selector";
+import ArticleList from "../Home/components/ArticleList";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,7 +54,17 @@ const Profile = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  return (
+  const params: any = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(findById(params.id));
+  }, [params.id]);
+  const userData = useSelector(selectUserData);
+  const loading = useSelector(selectUserLoading);
+
+  return loading ? (
+    <p>loading</p>
+  ) : (
     <div className={styles.main}>
       <div className={styles.header}>
         <div className={styles.headLeft}>
@@ -58,7 +76,7 @@ const Profile = () => {
         </div>
         <div className={styles.headRigth}>
           <div className={styles.top}>
-            <strong>Дзен, что нового</strong>
+            <strong>{userData.name}</strong>
           </div>
           <div className={styles.bottom}>
             <div className={styles.countBlock}>
@@ -93,6 +111,7 @@ const Profile = () => {
           </Box>
           <TabPanel value={value} index={0}>
             Статьи
+            <ArticleList articles={userData.articles} />
           </TabPanel>
           <TabPanel value={value} index={1}>
             Подписчики

@@ -18,6 +18,19 @@ export const oneArticle = createAsyncThunk(
     return await ArticleApi.findOne(id);
   }
 );
+export const updateArticle = createAsyncThunk(
+  "article/updateArticle",
+  async (payload: any) => {
+    const { id, ...payloadData } = payload;
+    return await ArticleApi.update(id, payloadData);
+  }
+);
+export const removeArticle = createAsyncThunk(
+  "article/removeArticle",
+  async (id: string) => {
+    return await ArticleApi.remove(id);
+  }
+);
 
 interface ArticleState {
   articles: IArticle[];
@@ -39,7 +52,7 @@ const articleSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(createArticle.fulfilled, (state, action) => {
-        state.articles.push(action.payload.data);
+        state.articles.unshift(action.payload.data);
         state.loading = false;
       })
       .addCase(allArticle.fulfilled, (state, action) => {
@@ -49,6 +62,18 @@ const articleSlice = createSlice({
       .addCase(oneArticle.fulfilled, (state, action) => {
         state.article = action.payload.data;
         state.loading = false;
+      })
+      .addCase(updateArticle.fulfilled, (state, action) => {
+        console.log("action", action.payload);
+        state.articles = state.articles.filter(
+          (item) => item.id != action.payload.data.id
+        );
+        state.articles.push(action.payload.data);
+      })
+      .addCase(removeArticle.fulfilled, (state, action) => {
+        state.articles = state.articles.filter(
+          (item) => item.id != action.payload.data.id
+        );
       }),
 });
 

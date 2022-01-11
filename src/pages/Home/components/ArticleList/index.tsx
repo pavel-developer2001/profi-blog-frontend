@@ -121,6 +121,7 @@ const ArticleList: FC<ArticleListProps> = ({ articles }) => {
     <div className={styles.mainList}>
       {articles?.map((article: any) => (
         <ArticleListItem
+          key={article.id}
           id={article.id}
           title={article.title}
           text={article.text}

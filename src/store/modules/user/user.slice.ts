@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { IUser } from "./types/IUser";
 import AuthApi from "../../../services/api/auth-api";
+import UserApi from "../../../services/api/user-api";
 
 export const register = createAsyncThunk(
   "user/register",
@@ -14,15 +15,23 @@ export const login = createAsyncThunk(
     return await AuthApi.login(payload);
   }
 );
+export const findById = createAsyncThunk(
+  "user/findById",
+  async (id: string) => {
+    return await UserApi.findOne(id);
+  }
+);
 
 interface UserState {
   user: IUser[];
+  userData: any;
   token: string;
   status: null | string;
   loading: boolean;
 }
 const initialState: UserState = {
   user: [],
+  userData: [],
   token: "",
   status: null,
   loading: true,
@@ -57,6 +66,10 @@ const userSlice = createSlice({
         );
         state.loading = false;
         state.token = action.payload.data.access_token;
+      })
+      .addCase(findById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userData = action.payload.data;
       }),
 });
 

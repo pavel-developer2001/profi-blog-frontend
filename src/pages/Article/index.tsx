@@ -5,21 +5,26 @@ import {
   Chip,
   IconButton,
   Stack,
+  TextField,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Article.module.scss";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import CommentBlock from "./components/CommentBlock";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
-import { oneArticle } from "../../store/modules/article/article.slice";
+import {
+  oneArticle,
+  removeArticle,
+  updateArticle,
+} from "../../store/modules/article/article.slice";
 import {
   selectArticleLoading,
   selectOneArticle,
@@ -28,6 +33,10 @@ import {
 const Article = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const article = useSelector(selectOneArticle);
+
+  const [exit, setExit] = useState(false);
+  const [title, setTitle] = useState(article?.title);
+  const [text, setText] = useState(article?.text);
   const loading = useSelector(selectArticleLoading);
 
   const dispatch = useDispatch();
@@ -35,13 +44,40 @@ const Article = () => {
 
   useEffect(() => {
     dispatch(oneArticle(params.id));
-  }, [params]);
+  }, [params.id]);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleUpdateArticle = () => {
+    setExit(true);
+  };
+  const canselUpdateArticle = () => {
+    setExit(false);
+    setAnchorEl(null);
+  };
+  const saveUpdateArticle = async (e: any) => {
+    e.preventDefault();
+    try {
+      const payload = await { id: params.id, title, text };
+      //@ts-ignore
+      await dispatch(updateArticle(payload));
+      setAnchorEl(null);
+      setExit(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const history = useHistory();
+  const handleRemoveArticle = () => {
+    if (global.confirm("Вы действительно хотите удалить статью?")) {
+      dispatch(removeArticle(params.id));
+      setAnchorEl(null);
+      history.push("/");
+    }
   };
   return (
     <div className={styles.main}>
@@ -89,14 +125,34 @@ const Article = () => {
                     </div>
                     Добавить в закладки
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    {" "}
-                    <div className={styles.menuIcon}>
-                      <EditIcon />
-                    </div>
-                    Редактировать
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
+                  {exit ? (
+                    <>
+                      <MenuItem onClick={saveUpdateArticle}>
+                        {" "}
+                        <div className={styles.menuIcon}>
+                          <EditIcon />
+                        </div>
+                        Сохранить
+                      </MenuItem>
+                      <MenuItem onClick={canselUpdateArticle}>
+                        {" "}
+                        <div className={styles.menuIcon}>
+                          <EditIcon />
+                        </div>
+                        Отмена
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem onClick={handleUpdateArticle}>
+                      {" "}
+                      <div className={styles.menuIcon}>
+                        <EditIcon />
+                      </div>
+                      Редактировать
+                    </MenuItem>
+                  )}
+
+                  <MenuItem onClick={handleRemoveArticle}>
                     {" "}
                     <div className={styles.menuIcon}>
                       <DeleteIcon />
@@ -108,10 +164,33 @@ const Article = () => {
             </div>
           </div>
           <div className={styles.body}>
-            <strong>{article.title}</strong>
-            <span>{article.createdAt} - 44 тыс. прочитали</span>
-            <p>{article.text}</p>
+            {exit ? (
+              <TextField
+                fullWidth
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                id='outlined-basic'
+                label='Заголовок статьи'
+                variant='outlined'
+              />
+            ) : (
+              <strong>{article.title}</strong>
+            )}
 
+            <span>{article.createdAt} - 44 тыс. прочитали</span>
+
+            {exit ? (
+              <TextField
+                fullWidth
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                id='outlined-basic'
+                label='Текст статьи'
+                variant='outlined'
+              />
+            ) : (
+              <p>{article.text}</p>
+            )}
             <img
               src={
                 article.img

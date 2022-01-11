@@ -14,6 +14,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import { useDispatch } from "react-redux";
 import { createArticle } from "../../store/modules/article/article.slice";
+import { dataUser } from "../../utils/getDataUserFromToken";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -95,7 +96,7 @@ const AddArticle = () => {
             aria-label='upload picture'
             component='span'
           >
-            <Link to='/users/1'>
+            <Link to={'/users/' + dataUser}>
               <ArrowBackIcon />
             </Link>
           </IconButton>
