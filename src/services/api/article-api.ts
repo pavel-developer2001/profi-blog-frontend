@@ -1,8 +1,14 @@
 import services from "..";
 
 export default class ArticleApi {
-  static async create(payload: { title: string; text: string }) {
-    return services.post("/articles/", payload);
+  static async create(payload: any) {
+    return services.post("/articles/upload", payload, {
+      headers: {
+        accept: "application/json",
+        "Accept-Language": "en-US,en;q=0.8",
+        "Content-Type": "multipart/form-data",
+      },
+    });
   }
   static async findAll() {
     return services.get("/articles/");

@@ -57,7 +57,6 @@ const AddArticle = () => {
   const [personName, setPersonName] = React.useState<string[]>([]);
   console.log("categories", personName);
   const [imgArticle, setImgArticle] = React.useState<any>(null);
-  console.log("imgArticle", imgArticle);
   const [testIMG, setTestIMG] = React.useState<any>(null);
   const handleChangeImg = (e: any) => {
     const imageUrl = URL.createObjectURL(e.target.files[0]);
@@ -73,14 +72,11 @@ const AddArticle = () => {
   const handleAddArticle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const payload = {
-        title,
-        text,
-        // cover: imgArticle,
-        // categories: personName,
-      };
-      console.log("Payload", payload);
-      dispatch(createArticle(payload));
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("text", text);
+      formData.append("img", imgArticle);
+      dispatch(createArticle(formData));
       setText("");
       setTitle("");
       setPersonName([]);
@@ -96,7 +92,7 @@ const AddArticle = () => {
             aria-label='upload picture'
             component='span'
           >
-            <Link to={'/users/' + dataUser}>
+            <Link to={"/users/" + dataUser}>
               <ArrowBackIcon />
             </Link>
           </IconButton>
