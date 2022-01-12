@@ -32,8 +32,9 @@ import {
 
 const Article = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const article = useSelector(selectOneArticle);
-
+  const articleMain = useSelector(selectOneArticle);
+  const article = articleMain?.article;
+  const categories = articleMain?.categories;
   const [exit, setExit] = useState(false);
   const [title, setTitle] = useState(article?.title);
   const [text, setText] = useState(article?.text);
@@ -90,10 +91,10 @@ const Article = () => {
             <div className={styles.menuLeft}>
               <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
 
-              <Link to={"/users/" + article.user.id}>
+              <Link to={"/users/" + article?.user?.id}>
                 <div className={styles.dataAuthor}>
                   {" "}
-                  <strong> {article.user.name}</strong>
+                  <strong> {article?.user?.name}</strong>
                   <span> 125 507 подписчиков</span>{" "}
                 </div>
               </Link>
@@ -202,13 +203,13 @@ const Article = () => {
           </div>
           <div className={styles.categoryBlock}>
             <Stack direction='row' spacing={1}>
-              <Chip label='Аниме' color='primary' />
-              <Chip label='Аниме' color='primary' />
-              <Chip label='Аниме' color='primary' />
-              <Chip label='Аниме' color='primary' />
-              <Chip label='Аниме' color='primary' />
-              <Chip label='Аниме' color='primary' />
-              <Chip label='Аниме' color='primary' />
+              {categories?.map((category: any) => (
+                <Chip
+                  key={category.id}
+                  label={category.category}
+                  color='primary'
+                />
+              ))}
             </Stack>
           </div>
           <div className={styles.footer}>

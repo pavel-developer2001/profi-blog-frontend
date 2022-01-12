@@ -76,6 +76,9 @@ const AddArticle = () => {
       formData.append("title", title);
       formData.append("text", text);
       formData.append("img", imgArticle);
+      for (let i = 0; i < personName.length; i++) {
+        formData.append("categories", personName[i]);
+      }
       dispatch(createArticle(formData));
       setText("");
       setTitle("");
