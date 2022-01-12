@@ -6,6 +6,7 @@ import ArticleApi from "../../../services/api/article-api";
 export const createArticle = createAsyncThunk(
   "article/createArticle",
   async (payload: any) => {
+    console.log("store", payload);
     return await ArticleApi.create(payload);
   }
 );
