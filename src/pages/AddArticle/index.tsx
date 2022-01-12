@@ -57,7 +57,6 @@ const AddArticle = () => {
   const [personName, setPersonName] = React.useState<string[]>([]);
   console.log("categories", personName);
   const [imgArticle, setImgArticle] = React.useState<any>(null);
-  console.log("imgArticle", imgArticle);
   const [testIMG, setTestIMG] = React.useState<any>(null);
   const handleChangeImg = (e: any) => {
     const imageUrl = URL.createObjectURL(e.target.files[0]);
@@ -77,13 +76,6 @@ const AddArticle = () => {
       formData.append("title", title);
       formData.append("text", text);
       formData.append("img", imgArticle);
-      // const payload = {
-      //   title,
-      //   text,
-      //   img: imgArticle,
-      //   // categories: personName,
-      // };
-      // console.log("Payload", payload);
       dispatch(createArticle(formData));
       setText("");
       setTitle("");
