@@ -64,7 +64,6 @@ const articleSlice = createSlice({
         state.loading = false;
       })
       .addCase(updateArticle.fulfilled, (state, action) => {
-        console.log("action", action.payload);
         state.articles = state.articles.filter(
           (item) => item.id != action.payload.data.id
         );

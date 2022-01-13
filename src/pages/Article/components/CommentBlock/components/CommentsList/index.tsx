@@ -75,7 +75,6 @@ const CommentsList = () => {
   const dispatch = useDispatch();
   const comments = useSelector(selectAllCommentByArticle);
   const loading = useSelector(selectCommentLoading);
-  console.log("comments", comments, loading);
   useEffect(() => {
     dispatch(findAllCommentsByArticle(params.id));
   }, [params.id]);

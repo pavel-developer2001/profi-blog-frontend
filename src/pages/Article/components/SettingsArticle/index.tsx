@@ -7,7 +7,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./SettingsArticle.module.scss";
 import { useDispatch } from "react-redux";
-import { removeArticle } from "../../../../store/modules/article/article.slice";
+import {
+  removeArticle,
+  updateArticle,
+} from "../../../../store/modules/article/article.slice";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { dataUser } from "../../../../utils/getDataUserFromToken";
 
@@ -49,7 +52,7 @@ const SettingsArticle: FC<SettingsArticleProps> = ({
     e.preventDefault();
     try {
       const payload = await { id: params.id, title, text };
-      //@ts-ignore
+
       await dispatch(updateArticle(payload));
       setAnchorEl(null);
       setExit(false);
