@@ -12,9 +12,11 @@ import {
 import CategoryBlock from "./components/CategoryBlock";
 import SettingsArticle from "./components/SettingsArticle";
 import FooterArticle from "./components/FooterArticle";
+import { selectUserToken } from "../../store/modules/user/user.selector";
 
 const Article = () => {
   const articleMain = useSelector(selectOneArticle);
+  const isAuth = useSelector(selectUserToken);
   const article = articleMain?.article;
   const categories = articleMain?.categories;
   const [exit, setExit] = useState(false);
@@ -48,14 +50,16 @@ const Article = () => {
                 </div>
               </Link>
             </div>
-            <SettingsArticle
-              setExit={setExit}
-              params={params}
-              title={title}
-              text={text}
-              exit={exit}
-              articleUserId={article?.user?.id}
-            />
+            {isAuth ? (
+              <SettingsArticle
+                setExit={setExit}
+                params={params}
+                title={title}
+                text={text}
+                exit={exit}
+                articleUserId={article?.user?.id}
+              />
+            ) : null}
           </div>
           <div className={styles.body}>
             {exit ? (
