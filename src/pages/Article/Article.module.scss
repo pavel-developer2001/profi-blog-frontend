@@ -15,9 +15,6 @@
       margin-left: 10px;
     }
   }
-  .menuRigth {
-    display: flex;
-  }
 }
 .body {
   max-width: 600px;
@@ -46,24 +43,4 @@
     height: 337.5px;
     border-radius: 8px;
   }
-}
-.footer {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-
-  .footerLeft {
-    display: flex;
-    align-items: center;
-    strong {
-      margin-left: 5px;
-    }
-  }
-  .footerRigth {
-    display: flex;
-    align-items: center;
-  }
-}
-.categoryBlock {
-  margin-top: 15px;
 }

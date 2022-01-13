@@ -1,0 +1,17 @@
+.footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  .footerLeft {
+    display: flex;
+    align-items: center;
+    strong {
+      margin-left: 5px;
+    }
+  }
+  .footerRigth {
+    display: flex;
+    align-items: center;
+  }
+}

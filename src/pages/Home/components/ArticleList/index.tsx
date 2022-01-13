@@ -127,8 +127,8 @@ const ArticleList: FC<ArticleListProps> = ({ articles }) => {
           text={article.text}
           img={article.img}
           date={article.createdAt}
-          userName={article.user.name}
-          userId={article.user.id}
+          userName={article?.user?.name}
+          userId={article?.user?.id}
         />
       ))}
     </div>
