@@ -15,7 +15,6 @@ const AddArticle = () => {
   const dispatch = useDispatch();
 
   const [personName, setPersonName] = React.useState<string[]>([]);
-
   const [imgArticle, setImgArticle] = React.useState<any>(null);
 
   const handleAddArticle = async (e: React.MouseEvent<HTMLButtonElement>) => {
