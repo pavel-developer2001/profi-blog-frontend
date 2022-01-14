@@ -63,7 +63,6 @@ const AddCategoryForArticle: FC<AddCategoryForArticleProps> = ({
   };
   const categories = useSelector(selectAllCategory);
   const loading = useSelector(selectCategoryLoading);
-  console.log("categories", categories, loading);
   useEffect(() => {
     dispatch(find());
   }, []);

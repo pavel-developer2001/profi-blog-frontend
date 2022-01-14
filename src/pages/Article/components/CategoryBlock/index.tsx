@@ -11,7 +11,7 @@ const CategoryBlock: FC<CategoryBlockProps> = ({ categories }) => {
     <div className={styles.categoryBlock}>
       <Stack direction='row' spacing={1}>
         {categories?.map((category: any) => (
-          <Chip key={category?.id} label={category?.category} color='primary' />
+          <Chip key={category?.id} label={category?.name} color='primary' />
         ))}
       </Stack>
     </div>

@@ -15,10 +15,10 @@ import FooterArticle from "./components/FooterArticle";
 import { selectUserToken } from "../../store/modules/user/user.selector";
 
 const Article = () => {
-  const articleMain = useSelector(selectOneArticle);
+  const article = useSelector(selectOneArticle);
+
   const isAuth = useSelector(selectUserToken);
-  const article = articleMain?.article;
-  const categories = articleMain?.categories;
+
   const [exit, setExit] = useState(false);
   const [title, setTitle] = useState(article?.title);
   const [text, setText] = useState(article?.text);
@@ -98,7 +98,7 @@ const Article = () => {
               alt='cover article'
             />
           </div>
-          <CategoryBlock categories={categories} />
+          <CategoryBlock categories={article?.categories} />
           <FooterArticle />
         </>
       )}
