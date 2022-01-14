@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,6 +8,12 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import styles from "./AddCategoryForArticle.module.scss";
 import { Theme, useTheme } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectAllCategory,
+  selectCategoryLoading,
+} from "../../../../store/modules/category/category.selector";
+import { find } from "../../../../store/modules/category/category.slice";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,18 +25,18 @@ const MenuProps = {
     },
   },
 };
-const names = [
-  "Аниме",
-  "Новости",
-  "Игры",
-  "Наука",
-  "Кино",
-  "Музыка",
-  "Искусство",
-  "Сериал",
-  "Хит",
-  "Космос",
-];
+// const names = [
+//   "Аниме",
+//   "Новости",
+//   "Игры",
+//   "Наука",
+//   "Кино",
+//   "Музыка",
+//   "Искусство",
+//   "Сериал",
+//   "Хит",
+//   "Космос",
+// ];
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
@@ -48,12 +54,19 @@ const AddCategoryForArticle: FC<AddCategoryForArticleProps> = ({
   setPersonName,
 }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
       target: { value },
     } = event;
     setPersonName(typeof value === "string" ? value.split(",") : value);
   };
+  const categories = useSelector(selectAllCategory);
+  const loading = useSelector(selectCategoryLoading);
+  console.log("categories", categories, loading);
+  useEffect(() => {
+    dispatch(find());
+  }, []);
   return (
     <div className={styles.bodyCategories}>
       <FormControl sx={{ m: 1, width: 300 }}>
@@ -77,15 +90,19 @@ const AddCategoryForArticle: FC<AddCategoryForArticleProps> = ({
           )}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
+          {loading ? (
+            <p>loading</p>
+          ) : (
+            categories.map((category: any) => (
+              <MenuItem
+                key={category.id}
+                value={category.name}
+                style={getStyles(category.name, personName, theme)}
+              >
+                {category.name}
+              </MenuItem>
+            ))
+          )}
         </Select>
       </FormControl>
     </div>
