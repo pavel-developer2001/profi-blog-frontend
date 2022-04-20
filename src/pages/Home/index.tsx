@@ -16,7 +16,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div>{loading ? <p>loading</p> : <ArticleList articles={articles} />}</div>
+    <div>
+      {loading ? <p>Loading...</p> : <ArticleList articles={articles} />}
+    </div>
   );
 };
 
