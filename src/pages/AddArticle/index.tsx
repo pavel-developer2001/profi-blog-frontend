@@ -39,21 +39,21 @@ const AddArticle = () => {
       <div className={styles.header}>
         <div className={styles.headLeft}>
           <IconButton
-            color='primary'
-            aria-label='upload picture'
-            component='span'
+            color="primary"
+            aria-label="upload picture"
+            component="span"
           >
             <Link to={"/users/" + dataUser}>
               <ArrowBackIcon />
             </Link>
           </IconButton>
           <div className={styles.dataUser}>
-            <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             <strong>Darl Side</strong>
           </div>
         </div>
         <div className={styles.headRigth}>
-          <Button variant='contained' onClick={handleAddArticle}>
+          <Button variant="contained" onClick={handleAddArticle}>
             Опубликовать
           </Button>
         </div>
@@ -64,9 +64,9 @@ const AddArticle = () => {
             fullWidth
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            id='outlined-basic'
-            label='Заголовок статьи'
-            variant='outlined'
+            id="outlined-basic"
+            label="Заголовок статьи"
+            variant="outlined"
           />
         </div>
         <div className={styles.bodyText}>
@@ -74,8 +74,8 @@ const AddArticle = () => {
             fullWidth
             value={text}
             onChange={(e) => setText(e.target.value)}
-            id='outlined-multiline-static'
-            label='Описание статьи'
+            id="outlined-multiline-static"
+            label="Описание статьи"
             multiline
             rows={4}
           />

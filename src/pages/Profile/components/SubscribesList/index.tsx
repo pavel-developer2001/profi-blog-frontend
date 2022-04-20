@@ -6,8 +6,8 @@ import styles from "./SubscribesList.module.scss";
 const SubscribesListItem = () => {
   return (
     <div className={styles.block}>
-      <Link to='/users/12' className={styles.main}>
-        <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+      <Link to="/users/12" className={styles.main}>
+        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         <strong>Heodark</strong>
       </Link>
     </div>

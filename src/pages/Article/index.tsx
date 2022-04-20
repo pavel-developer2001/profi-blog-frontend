@@ -40,7 +40,7 @@ const Article = () => {
           {" "}
           <div className={styles.menu}>
             <div className={styles.menuLeft}>
-              <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
 
               <Link to={"/users/" + article?.user?.id}>
                 <div className={styles.dataAuthor}>
@@ -67,9 +67,9 @@ const Article = () => {
                 fullWidth
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                id='outlined-basic'
-                label='Заголовок статьи'
-                variant='outlined'
+                id="outlined-basic"
+                label="Заголовок статьи"
+                variant="outlined"
               />
             ) : (
               <strong>{article?.title}</strong>
@@ -82,9 +82,9 @@ const Article = () => {
                 fullWidth
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                id='outlined-basic'
-                label='Текст статьи'
-                variant='outlined'
+                id="outlined-basic"
+                label="Текст статьи"
+                variant="outlined"
               />
             ) : (
               <p>{article?.text}</p>
@@ -95,7 +95,7 @@ const Article = () => {
                   ? article?.img
                   : "https://avatars.mds.yandex.net/get-zen_doc/1880939/pub_5ec274cca23e1560113f276c_5ec276498600f212158d47a6/scale_1200"
               }
-              alt='cover article'
+              alt="cover article"
             />
           </div>
           <CategoryBlock categories={article?.categories} />

@@ -58,16 +58,16 @@ const AddCategoryForArticle: FC<AddCategoryForArticleProps> = ({
   return (
     <div className={styles.bodyCategories}>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id='demo-multiple-chip-label'>Категории cтатьи</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">Категории cтатьи</InputLabel>
         <Select
           fullWidth
-          labelId='demo-multiple-chip-label'
-          id='demo-multiple-chip'
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
           input={
-            <OutlinedInput id='select-multiple-chip' label='Категории cтатьи' />
+            <OutlinedInput id="select-multiple-chip" label="Категории cтатьи" />
           }
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>

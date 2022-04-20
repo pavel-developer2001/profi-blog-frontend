@@ -31,17 +31,17 @@ const AuthModal = () => {
   return (
     <div>
       {" "}
-      <Button onClick={handleOpen} variant='outlined' color='primary'>
+      <Button onClick={handleOpen} variant="outlined" color="primary">
         Войти
       </Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
             {register ? "Регистрация" : "Войти в аккаунт"}
           </Typography>
           <div>

@@ -69,19 +69,19 @@ const SettingsArticle: FC<SettingsArticleProps> = ({
   };
   return (
     <div className={styles.menuRigth}>
-      <Button variant='outlined'>Подписаться</Button>
+      <Button variant="outlined">Подписаться</Button>
       <div className={styles.settings}>
         <Button
-          id='basic-button'
-          aria-controls='basic-menu'
-          aria-haspopup='true'
+          id="basic-button"
+          aria-controls="basic-menu"
+          aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
           <MoreHorizIcon />
         </Button>
         <Menu
-          id='basic-menu'
+          id="basic-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}

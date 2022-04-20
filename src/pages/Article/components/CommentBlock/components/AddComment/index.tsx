@@ -25,24 +25,24 @@ const AddComment = () => {
   };
   return (
     <div className={styles.main}>
-      <Avatar src='/broken-image.jpg' />
+      <Avatar src="/broken-image.jpg" />
       <div className={styles.inputBlock}>
         <TextField
-          id='outlined-basic'
+          id="outlined-basic"
           value={text}
           onChange={(e) => setText(e.target.value)}
           sx={{ width: "500px" }}
-          label='Комментрировать'
-          variant='outlined'
+          label="Комментрировать"
+          variant="outlined"
           fullWidth
         />
         {text.length > 0 ? (
           <div className={styles.btn}>
             <IconButton
-              color='primary'
+              color="primary"
               onClick={handleCreateComment}
-              aria-label='upload picture'
-              component='span'
+              aria-label="upload picture"
+              component="span"
             >
               <SendIcon />
             </IconButton>

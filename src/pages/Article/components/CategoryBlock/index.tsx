@@ -9,9 +9,9 @@ interface CategoryBlockProps {
 const CategoryBlock: FC<CategoryBlockProps> = ({ categories }) => {
   return (
     <div className={styles.categoryBlock}>
-      <Stack direction='row' spacing={1}>
+      <Stack direction="row" spacing={1}>
         {categories?.map((category: any) => (
-          <Chip key={category?.id} label={category?.name} color='primary' />
+          <Chip key={category?.id} label={category?.name} color="primary" />
         ))}
       </Stack>
     </div>

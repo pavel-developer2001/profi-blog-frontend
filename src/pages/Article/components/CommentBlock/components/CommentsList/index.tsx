@@ -30,8 +30,8 @@ const CommentsListItem: FC<CommentsListItemProps> = ({
       <div className={styles.header}>
         <Avatar
           sx={{ width: 32, height: 32 }}
-          alt='Remy Sharp'
-          src='/static/images/avatar/1.jpg'
+          alt="Remy Sharp"
+          src="/static/images/avatar/1.jpg"
         />
         <strong>{userName}</strong>
         <span>{date}</span>
@@ -41,15 +41,15 @@ const CommentsListItem: FC<CommentsListItemProps> = ({
       </div>
       <div className={styles.footer}>
         <div className={styles.footerLeft}>
-          <Button variant='text'>Ответить</Button>
+          <Button variant="text">Ответить</Button>
         </div>
         <div className={styles.footerRigth}>
           <div className={styles.likeBtn}>
             {" "}
             <IconButton
-              color='primary'
-              aria-label='upload picture'
-              component='span'
+              color="primary"
+              aria-label="upload picture"
+              component="span"
             >
               <ThumbUpIcon />
             </IconButton>
@@ -58,9 +58,9 @@ const CommentsListItem: FC<CommentsListItemProps> = ({
           <div className={styles.likeBtn}>
             {" "}
             <IconButton
-              color='primary'
-              aria-label='upload picture'
-              component='span'
+              color="primary"
+              aria-label="upload picture"
+              component="span"
             >
               <ThumbDownAltIcon />
             </IconButton>

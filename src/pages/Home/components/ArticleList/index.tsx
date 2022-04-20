@@ -30,8 +30,8 @@ const ArticleListItem: FC<ArticleListItemProps> = ({
       <div className={styles.header}>
         <div className={styles.headLeft}>
           <Avatar
-            alt='Remy Sharp'
-            src='/static/images/avatar/1.jpg'
+            alt="Remy Sharp"
+            src="/static/images/avatar/1.jpg"
             sx={{ width: 24, height: 24 }}
           />{" "}
           <strong className={styles.name}>{userName}</strong>
@@ -39,9 +39,9 @@ const ArticleListItem: FC<ArticleListItemProps> = ({
         <div className={styles.headRigth}>
           {" "}
           <IconButton
-            color='primary'
-            aria-label='upload picture'
-            component='span'
+            color="primary"
+            aria-label="upload picture"
+            component="span"
           >
             <PersonAddAlt1Icon />
           </IconButton>
@@ -55,7 +55,7 @@ const ArticleListItem: FC<ArticleListItemProps> = ({
                 ? img
                 : "https://avatars.mds.yandex.net/get-zen_doc/1880939/pub_5ec274cca23e1560113f276c_5ec276498600f212158d47a6/scale_1200"
             }
-            alt='cover article'
+            alt="cover article"
             className={styles.cover}
           />
         </div>
@@ -72,13 +72,13 @@ const ArticleListItem: FC<ArticleListItemProps> = ({
           <AvatarGroup max={2}>
             <Avatar
               sx={{ width: 20, height: 20 }}
-              alt='Remy Sharp'
-              src='/static/images/avatar/1.jpg'
+              alt="Remy Sharp"
+              src="/static/images/avatar/1.jpg"
             />
             <Avatar
               sx={{ width: 20, height: 20 }}
-              alt='Travis Howard'
-              src='/static/images/avatar/2.jpg'
+              alt="Travis Howard"
+              src="/static/images/avatar/2.jpg"
             />
           </AvatarGroup>
           <span>
@@ -89,9 +89,9 @@ const ArticleListItem: FC<ArticleListItemProps> = ({
           <div className={styles.likeBtn}>
             {" "}
             <IconButton
-              color='primary'
-              aria-label='upload picture'
-              component='span'
+              color="primary"
+              aria-label="upload picture"
+              component="span"
             >
               <ThumbUpIcon />
             </IconButton>
@@ -100,9 +100,9 @@ const ArticleListItem: FC<ArticleListItemProps> = ({
           <div className={styles.likeBtn}>
             {" "}
             <IconButton
-              color='primary'
-              aria-label='upload picture'
-              component='span'
+              color="primary"
+              aria-label="upload picture"
+              component="span"
             >
               <ThumbDownAltIcon />
             </IconButton>

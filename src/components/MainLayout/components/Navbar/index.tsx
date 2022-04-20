@@ -125,7 +125,7 @@ const Navbar = () => {
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <div className={styles.menuItem}>
-          <Link to='/book-marks'>
+          <Link to="/book-marks">
             <BookmarkAddIcon />
             <p>Мои закладки</p>
           </Link>
@@ -133,7 +133,7 @@ const Navbar = () => {
       </MenuItem>
       <MenuItem onClick={handleExitUser}>
         <div className={styles.menuItem}>
-          <Link to='/book-marks'>
+          <Link to="/book-marks">
             <LogoutIcon />
             <p>Выход</p>
           </Link>
@@ -160,8 +160,8 @@ const Navbar = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='error'>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -169,11 +169,11 @@ const Navbar = () => {
       </MenuItem>
       <MenuItem>
         <IconButton
-          size='large'
-          aria-label='show 17 new notifications'
-          color='inherit'
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
         >
-          <Badge badgeContent={17} color='error'>
+          <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -181,11 +181,11 @@ const Navbar = () => {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size='large'
-          aria-label='account of current user'
-          aria-controls='primary-search-account-menu'
-          aria-haspopup='true'
-          color='inherit'
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
         >
           <AccountCircle />
         </IconButton>
@@ -197,13 +197,13 @@ const Navbar = () => {
   const dispatch = useDispatch();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static' className={styles.header}>
+      <AppBar position="static" className={styles.header}>
         <Toolbar>
-          <Link to='/'>
+          <Link to="/">
             <Typography
-              variant='h6'
+              variant="h6"
               noWrap
-              component='div'
+              component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
               PROBLOG
@@ -215,28 +215,28 @@ const Navbar = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder='Search…'
+              placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {isAuth ? (
-              <Button variant='contained' startIcon={<AddIcon />}>
-                <Link to='/add-article'> Добавить статью</Link>
+              <Button variant="contained" startIcon={<AddIcon />}>
+                <Link to="/add-article"> Добавить статью</Link>
               </Button>
             ) : null}
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {isAuth ? (
               <IconButton
-                size='large'
-                edge='end'
-                aria-label='account of current user'
+                size="large"
+                edge="end"
+                aria-label="account of current user"
                 aria-controls={menuId}
-                aria-haspopup='true'
+                aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                color='inherit'
+                color="inherit"
               >
                 <AccountCircle />
               </IconButton>

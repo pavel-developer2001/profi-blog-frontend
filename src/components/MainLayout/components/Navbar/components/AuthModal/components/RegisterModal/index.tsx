@@ -47,58 +47,58 @@ const RegisterModal = () => {
           render={({ field }) => (
             <TextField
               {...field}
-              label='UserName'
+              label="UserName"
               error={!!errors?.name}
-              id='outlined-error-helper-text'
+              id="outlined-error-helper-text"
               helperText={errors?.name?.message}
             />
           )}
-          name='name'
+          name="name"
           control={control}
-          defaultValue=''
+          defaultValue=""
         />
         <Controller
           render={({ field }) => (
             <TextField
               {...field}
-              label='Email'
-              id='outlined-error-helper-text'
+              label="Email"
+              id="outlined-error-helper-text"
               error={!!errors?.email}
               helperText={errors?.email?.message}
             />
           )}
-          name='email'
+          name="email"
           control={control}
-          defaultValue=''
+          defaultValue=""
         />
         <Controller
           render={({ field }) => (
             <TextField
               {...field}
-              label='Пароль'
+              label="Пароль"
               error={!!errors?.password}
               helperText={errors?.password?.message}
             />
           )}
-          name='password'
+          name="password"
           control={control}
-          defaultValue=''
+          defaultValue=""
         />
         <Controller
           render={({ field }) => (
             <TextField
               {...field}
-              label='Повторить пароль'
+              label="Повторить пароль"
               error={!!errors?.password2}
               helperText={errors?.password2?.message}
             />
           )}
-          name='password2'
+          name="password2"
           control={control}
-          defaultValue=''
+          defaultValue=""
         />
         <div>
-          <Button variant='contained' type='submit'>
+          <Button variant="contained" type="submit">
             Зарегистрироваться
           </Button>
         </div>

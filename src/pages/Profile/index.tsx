@@ -26,7 +26,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -70,8 +70,8 @@ const Profile = () => {
         <div className={styles.headLeft}>
           <Avatar
             sx={{ width: 100, height: 100 }}
-            alt='Remy Sharp'
-            src='/static/images/avatar/1.jpg'
+            alt="Remy Sharp"
+            src="/static/images/avatar/1.jpg"
           />
         </div>
         <div className={styles.headRigth}>
@@ -92,7 +92,7 @@ const Profile = () => {
       </div>
       <div className={styles.subscribeBlock}>
         <div className={styles.subscribeLeft}>
-          <Button variant='contained'>Подписаться на канал</Button>
+          <Button variant="contained">Подписаться на канал</Button>
         </div>
         <div className={styles.subscribeRigth}></div>
       </div>
@@ -102,11 +102,11 @@ const Profile = () => {
             <Tabs
               value={value}
               onChange={handleChange}
-              aria-label='basic tabs example'
+              aria-label="basic tabs example"
             >
-              <Tab label='Статьи' {...a11yProps(0)} />
-              <Tab label='Подписчики' {...a11yProps(1)} />
-              <Tab label='Подписки' {...a11yProps(2)} />
+              <Tab label="Статьи" {...a11yProps(0)} />
+              <Tab label="Подписчики" {...a11yProps(1)} />
+              <Tab label="Подписки" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>

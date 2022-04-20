@@ -18,15 +18,15 @@ const AddImgComponent: FC<AddImgComponentProps> = ({
   return (
     <div className={styles.bodyImg}>
       {imgArticle ? (
-        <img src={testIMG} alt='test img' className='add-room__img' />
+        <img src={testIMG} alt="test img" className="add-room__img" />
       ) : (
         <>
           <label>Выбрать обложку статьи</label>
           <input
-            className='position-relative'
-            type='file'
+            className="position-relative"
+            type="file"
             onChange={handleChangeImg}
-            id='validationFormik107'
+            id="validationFormik107"
           />{" "}
         </>
       )}

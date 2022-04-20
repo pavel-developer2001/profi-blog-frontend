@@ -13,18 +13,18 @@ const FooterArticle = () => {
         <AvatarGroup max={3}>
           <Avatar
             sx={{ width: 28, height: 28 }}
-            alt='Remy Sharp'
-            src='/static/images/avatar/1.jpg'
+            alt="Remy Sharp"
+            src="/static/images/avatar/1.jpg"
           />
           <Avatar
             sx={{ width: 28, height: 28 }}
-            alt='Travis Howard'
-            src='/static/images/avatar/2.jpg'
+            alt="Travis Howard"
+            src="/static/images/avatar/2.jpg"
           />
           <Avatar
             sx={{ width: 28, height: 28 }}
-            alt='Cindy Baker'
-            src='/static/images/avatar/3.jpg'
+            alt="Cindy Baker"
+            src="/static/images/avatar/3.jpg"
           />
         </AvatarGroup>
         <strong>5677 нравится</strong>
@@ -33,9 +33,9 @@ const FooterArticle = () => {
         <div className={styles.likeBtn}>
           {" "}
           <IconButton
-            color='primary'
-            aria-label='upload picture'
-            component='span'
+            color="primary"
+            aria-label="upload picture"
+            component="span"
           >
             <ThumbUpIcon />
           </IconButton>
@@ -44,9 +44,9 @@ const FooterArticle = () => {
         <div className={styles.likeBtn}>
           {" "}
           <IconButton
-            color='primary'
-            aria-label='upload picture'
-            component='span'
+            color="primary"
+            aria-label="upload picture"
+            component="span"
           >
             <ThumbDownAltIcon />
           </IconButton>
